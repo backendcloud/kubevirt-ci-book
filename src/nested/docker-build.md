@@ -3,6 +3,7 @@
 scratch是一个空镜像，直接docker hub下载是下不了的，只能在Dockerfile中用FROM
 
 ```bash
+# 不用容器，先用go build & run 执行下看下结果
 [root@localhost hello]# cat app.go 
 package main
 
@@ -16,10 +17,14 @@ func main(){
 app  app.go
 [root@localhost hello]# ./app 
 Hello World![root@localhost hello]#
+
+# Dockerfile （使用了空镜像scratch）
 [root@localhost hello]# cat Dockerfile
 FROM scratch
 ADD app /
 CMD ["/app"]
+
+# 构建镜像
 [root@localhost hello]# docker build -t hello .
 Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
 STEP 1/3: FROM scratch
@@ -30,10 +35,12 @@ COMMIT hello
 --> 3b05b3e8edb
 Successfully tagged localhost/hello:latest
 3b05b3e8edb740b20ed133aa65539217efe8cf2e97816b2912992fb8edb73f6b
+
 [root@localhost hello]# docker images
 Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
 REPOSITORY                                   TAG                   IMAGE ID      CREATED        SIZE
 localhost/hello                              latest                3b05b3e8edb7  3 seconds ago  1.78 MB
+# 用容器跑的结果 和 不用容器，用go build & run 一致
 [root@localhost hello]# docker container run -it hello
 Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
 Hello World![root@localhost hello]# 
@@ -45,6 +52,7 @@ Hello World![root@localhost hello]#
 2. 源代码分离，安全
 
 ```bash
+# 多阶段构建Dockerfile
 [root@localhost hello]# cat Dockerfile 
 FROM golang:alpine as builder
 WORKDIR /go/src/
@@ -54,6 +62,8 @@ FROM alpine:latest as prod
 WORKDIR /root/
 COPY --from=0 /go/src/app .
 CMD ["./app"]
+
+# 生成镜像（第一个跑完会被自动销毁，只保留第二个镜像）
 [root@localhost hello]# docker build -t hello:2 .
 Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
 [1/2] STEP 1/4: FROM golang:alpine AS builder
@@ -82,12 +92,15 @@ Storing signatures
 --> a37976309a6
 Successfully tagged localhost/hello:2
 a37976309a6375e3107bf0c89cc373d6c0b953b6596238006aabf0ac3bcfa762
+
 [root@localhost hello]# docker images
 Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
 REPOSITORY                                   TAG                   IMAGE ID      CREATED         SIZE
 localhost/hello                              2                     a37976309a63  16 seconds ago  7.59 MB
+
 [root@localhost hello]# docker container run -it hello:2
 Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
 Hello World![root@localhost hello]# 
+# 镜像运行符合预期（将镜像从alpine换成上一小节的scratch空镜像也可以）
 ```
 
