@@ -6,5 +6,8 @@ src = "src"
 title = "KubeVirt CI"
 
 [output.html]
+additional-css = ["style.css"]
+additional-js = ["sidebar.js"]
 
-[output.pdf]
+
+# [output.pdf]
