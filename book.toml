@@ -1,0 +1,10 @@
+[book]
+authors = ["backendcloud"]
+language = "en"
+multilingual = false
+src = "src"
+title = "KubeVirt CI"
+
+[output.html]
+
+[output.pdf]
