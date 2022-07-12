@@ -28,7 +28,6 @@ podman和docker cli命令几乎完全一致，常用命令基本感觉不到区�
     podman run -d -p 5000:5000 --name registry registry:2
 
 
-
 # Podman - http: server gave HTTP response to HTTPS client
 
 私有仓库推送镜像的时候失败，报了常见的错误：
@@ -39,9 +38,11 @@ pinging container registry localhost:5000: Get "https://localhost:5000/v2/": htt
 
 编辑 /etc/containers/registries.conf 增加：
 
+```toml
     [[registry]]
     location = "localhost:5000"
     insecure = true
+```
 
 ```bash
  ⚡ root@localhost  ~/CLionProjects/untitled/src   master ±✚  podman system info|grep Inse -B3 -A5 
@@ -77,7 +78,7 @@ Storing signatures
 a37976309a6375e3107bf0c89cc373d6c0b953b6596238006aabf0ac3bcfa762
 ```
 
-# dns
+# DNS
 
 ```bash
  ✘ ⚡ root@localhost  /dev/pts  podman exec -it d4df0ba3f7e5 sh
@@ -107,18 +108,20 @@ tmpfs on /etc/resolv.conf type tmpfs (rw,seclabel,size=2469232k,nr_inodes=819200
 
 Podman 服务默认会创建一个 podman0 网桥，它在内核层连通了其他的物理或虚拟网卡，这就将所有容器和本地主机都放到同一个物理网络。
 
-    ⚡ root@localhost  ~/CLionProjects/untitled/src   master ±✚  podman network ls
-    NETWORK ID    NAME        DRIVER
-    2f259bab93aa  podman      bridge
-    ⚡ root@localhost  ~/CLionProjects/untitled/src   master ±✚  ip a
-    ...
-    3: podman0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
-        link/ether 4e:41:72:5c:b5:0e brd ff:ff:ff:ff:ff:ff
-        inet 10.88.0.1/16 brd 10.88.255.255 scope global podman0
-        valid_lft forever preferred_lft forever
-        inet6 fe80::8c2b:79ff:fe70:516f/64 scope link 
-        valid_lft forever preferred_lft forever
-    ...
+```bash
+⚡ root@localhost  ~/CLionProjects/untitled/src   master ±✚  podman network ls
+NETWORK ID    NAME        DRIVER
+2f259bab93aa  podman      bridge
+⚡ root@localhost  ~/CLionProjects/untitled/src   master ±✚  ip a
+...
+3: podman0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 4e:41:72:5c:b5:0e brd ff:ff:ff:ff:ff:ff
+    inet 10.88.0.1/16 brd 10.88.255.255 scope global podman0
+    valid_lft forever preferred_lft forever
+    inet6 fe80::8c2b:79ff:fe70:516f/64 scope link 
+    valid_lft forever preferred_lft forever
+...
+```
 
 默认情况下，Podman 会将所有容器连接到由 podman0 提供的虚拟子网中。
 
