@@ -7,8 +7,13 @@
     - [gosu在容器中的使用](basic/dock-gosu.md)
     - [Podman](basic/podman-insecure.md)
     - [vagrant](basic/vagrant.md)
+    - [Bazel Golang hello-world](basic/bazel-go-hello.md)
+    - [bazelisk](basic/bazelisk.md)
     - [work in process 。。。]()
 - [模块]()
     - [build Centos Stream 8](module/build-centos8.md)
+    - [k8s-provision...](module/k8s-provision.md)
+    - [make cluster-down]()
+    - [make cluster-up]()
 - [work in process 。。。]()
 
