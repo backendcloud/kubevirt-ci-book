@@ -279,7 +279,7 @@ INFO: Build completed successfully, 1 total action
 hello world
 ```
 
-> 看了下gazalle代码仓库，17天前刚发了一个最新版本v0.26，试了下最新版BUG已经改掉，可将下面的内容替换掉WORKSPACE的相关内容
+> 看了下gazalle代码仓库，17天前(该文章写于2022/07/13)刚发了一个最新版本v0.26，试了下最新版BUG已经改掉，可将下面的内容替换掉WORKSPACE的相关内容
 
 ```bash
 http_archive(
