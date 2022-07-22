@@ -16,6 +16,7 @@
 - [源码分析]()
     - [build Centos Stream 8](module/build-centos8.md)
     - [k8s-provision - 获取镜像](module/k8s-provision-fetch-images.md)
+    - [用于打包指定libvirt版本的镜像的脚本](module/kubevirtci-libvirt-version-image-script.md)
     - [make cluster-down]()
     - [make cluster-up]()
 - [work in process 。。。]()
