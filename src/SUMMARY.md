@@ -5,7 +5,7 @@
 - [预备知识](basic.md)
     - [镜像构建](basic/docker-build.md)
     - [gosu在容器中的使用](basic/dock-gosu.md)
-    - [Podman](basic/podman-insecure.md)
+    - [Podman基本使用](basic/podman.md)
     - [vagrant](basic/vagrant.md)
     - [Bazel Golang hello-world](basic/bazel-go-hello.md)
     - [bazelisk](basic/bazelisk.md)
