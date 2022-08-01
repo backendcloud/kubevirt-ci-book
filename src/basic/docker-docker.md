@@ -115,14 +115,14 @@ OK: 8 MiB in 19 packages
 
 # Sysbox
 
-![](/images/docker-docker/2022-07-29-15-24-01.png)
+![](2022-08-01-14-17-42.png)
 
 https://github.com/nestybox/sysbox#installation  安装后，创建带Sysbox的容器命令： `docker run --runtime=sysbox-runc -it any_image`
 
 sysbox容器内部创建的容器在外面是看不到的，所以sysbox更像 安全版的 Docker in Docker。准确说sysbox是安全版的docker。若sysbox容器里装了docker那就是安全版的 Docker in Docker。若sysbox容器里装了Kubernetes，就是安全版的 Kubernetes in Docker。Kind是将Kubernetes的节点容器化，kind容器用sysbox容器代替，创建Kubernetes集群，那就是安全版的 Kind in Docker（如下图）。
 
-![](/images/docker-docker/2022-07-29-15-25-47.png)
+![](2022-08-01-14-17-51.png)
 
 ## Comparison to Related Technologies
 
-![](/images/docker-docker/2022-07-29-15-24-30.png)
+![](2022-08-01-14-17-59.png)
