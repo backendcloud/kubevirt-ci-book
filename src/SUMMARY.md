@@ -17,7 +17,7 @@
     - [编译 Libvirt 源码 并 创建yum源](./basic/libvirt-compile.md)
     - [KubeVirt替换virt-lantch中的libvirt的版本](./basic/kubevirt-replace-libvirt.md)
     - [KubeVirt替换virt-lantch中的libvirt的版本(高版本到低版本)](./basic/kubevirt-replace-libvirt2.md)
-    - [](./basic/yum-gpg.md)
+    - [创建一个带GPG-signed(gpgkey)的yum源](./basic/yum-gpg.md)
     - [work in process 。。。]()
 - [源码分析]()
     - [build Centos Stream 8](./module/build-centos8.md)
