@@ -5,7 +5,7 @@
 
 用修改后的rule去跑kubevirt的时候，报错
 
-![](/images/rules-docker-for-insecure-registries-kubevirt/2022-08-10-15-58-39.png)
+![](2022-08-17-15-42-42.png)
 
 # 原因
 
@@ -13,7 +13,7 @@
 
 具体发生错误的地方如下：line 785 ： attr.architecture 未配置
 
-![](/images/rules-docker-for-insecure-registries-kubevirt/2022-08-10-15-56-50.png)
+![](2022-08-17-15-42-53.png)
 
 # 对策
 
